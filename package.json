@@ -1,0 +1,28 @@
+{
+  "name": "dukebot-v2",
+  "version": "1.0.0",
+  "description": "Discord chat bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "start": "node src/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OMGDuke/dukebot-v2.git"
+  },
+  "author": "OMGDuke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OMGDuke/dukebot-v2/issues"
+  },
+  "homepage": "https://github.com/OMGDuke/dukebot-v2#readme",
+  "dependencies": {
+    "discord.js": "^10.0.1",
+    "dotenv": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}
