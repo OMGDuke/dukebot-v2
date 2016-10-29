@@ -4,9 +4,11 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 import Help from '../src/commands/help';
+import Ilevel from '../src/commands/ilevel';
 
 let commands = {
-  "!help": new Help()
+  "!help": new Help(),
+  "!ilevel": new Ilevel()
 }
 
 client.on('ready', () => {
