@@ -14,8 +14,9 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content in commands) {
-    message.channel.sendMessage(commands[message.content].send);
+  let command = message.content.split(" ")
+  if (command[0] in commands) {
+    message.channel.sendMessage(commands[command[0]].send(command));
   }
 });
 

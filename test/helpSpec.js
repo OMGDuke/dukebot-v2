@@ -9,6 +9,6 @@ let helpCommand = new HelpCommand();
 
 describe("Help", function() {
   it("returns a list of commands", function() {
-    expect(helpCommand.send).to.equal(helpMessage);
+    expect(helpCommand.send()).to.equal(helpMessage);
   });
 });
