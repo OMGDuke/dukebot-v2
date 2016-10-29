@@ -3,10 +3,10 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-import HelpCommand from '../src/commands/help';
+import Help from '../src/commands/help';
 
 let commands = {
-  "!help": new HelpCommand()
+  "!help": new Help()
 }
 
 client.on('ready', () => {

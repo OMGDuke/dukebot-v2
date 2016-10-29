@@ -1,11 +1,13 @@
-class HelpCommand {
+class Help {
   constructor() {
-    this.send = function() {
-      return "__**Available Commands are:**__\n\n**!slap** name\n**!(role)** " +
-      "(eg !rank1, !rank5)\n**!ilevel** server characterName\n**!deaths** " +
-      "server characterName";
-    }
+     this.message = "__**Available Commands are:**__\n\n**!slap** name\n**!(role)** " +
+    "(eg !rank1, !rank5)\n**!ilevel** server characterName\n**!deaths** " +
+    "server characterName";
+  }
+
+  send() {
+    return this.message
   }
 }
 
-export default HelpCommand;
+export default Help;
