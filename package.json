@@ -4,7 +4,7 @@
   "description": "Discord chat bot",
   "main": "bot.js",
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "mocha --reporter spec --compilers js:babel-core/register",
     "start": "node src/bot.js"
   },
   "repository": {
@@ -22,7 +22,13 @@
     "dotenv": "^2.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.18.0",
     "chai": "^3.5.0",
     "mocha": "^3.1.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }
