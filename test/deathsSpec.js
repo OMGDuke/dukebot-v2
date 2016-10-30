@@ -1,64 +1,68 @@
 require('dotenv').config();
 let expect = require("chai").expect;
 
-import Ilevel from '../src/commands/ilevel';
+import Deaths from '../src/commands/deaths';
 
-let ilevel = new Ilevel();
+let deaths = new Deaths();
 let commandArray = ["!ilevel", "draenor", "omgduke"];
 let url = "https://eu.api.battle.net/wow/character/";
-let urlOptions = "?fields=items&locale=en_GB&apikey=";
+let urlOptions = "?fields=statistics&locale=en_GB&apikey=";
 let testUrl = url + commandArray[1] + "/" + commandArray[2] + urlOptions +
 process.env.WOW_API_KEY;
-let response = "Omgduke's iLevel: 875";
 let json = {
   name: "Omgduke",
-  items: {
-    averageItemLevelEquipped: 875
+  statistics: {
+    subCategories: [{
+      name: "Deaths",
+      statistics: [{
+        quantity: "100"
+      }]
+    }]
   }
 }
+let response = "Omgduke has died 100 time(s)";
 
-describe("Ilevel", function() {
+describe("Deaths", function() {
   describe("send", function() {
     it("take in an array and stores the server name", function() {
-      ilevel.send(commandArray)
-      expect(ilevel.server).to.equal("draenor");
+      deaths.send(commandArray)
+      expect(deaths.server).to.equal("draenor");
     });
 
     it("take in an array and stores the character name", function() {
-      ilevel.send(commandArray)
-      expect(ilevel.character).to.equal("omgduke");
+      deaths.send(commandArray)
+      expect(deaths.character).to.equal("omgduke");
     });
 
     it("returns an error message if arguements not provided", function() {
       let arguementsError = "You must provide a server and character name"
-      expect(ilevel.send([1])).to.equal(arguementsError);
+      expect(deaths.send([1])).to.equal(arguementsError);
     });
   });
 
   describe("parseJson", function() {
-    it("returns the ilevel", function() {
-      ilevel.json = json
-      expect(ilevel.parseJson()).to.equal('875');
+    it("returns the death count", function() {
+      deaths.json = json
+      expect(deaths.parseJson()).to.equal('100');
     });
   });
 
   describe("buildResponse", function() {
     it("builds a string to respond with", function() {
-      ilevel.send(commandArray);
-      ilevel.json = json
-      expect(ilevel.buildResponse(875)).to.equal(response);
+      deaths.send(commandArray);
+      expect(deaths.buildResponse(100)).to.equal(response);
     })
   })
 
   describe("sendMessage", function() {
     it("Sends a correct response if data is valid", function() {
-      ilevel.send(commandArray);
-      ilevel.json = json
-      expect(ilevel.sendMessage()).to.equal(response);
+      deaths.send(commandArray);
+      deaths.json = json
+      expect(deaths.sendMessage()).to.equal(response);
     });
     it("provides an error message if data is invalid", function() {
-      ilevel.send([1, "server", "character"]);
-      expect(ilevel.sendMessage()).to.equal("Realm not found.");
+      deaths.send([1, "server", "character"]);
+      expect(deaths.sendMessage()).to.equal("Realm not found.");
     });
   })
 });

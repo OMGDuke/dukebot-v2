@@ -4,7 +4,7 @@ import WowApi from '../wowApi';
 
 let wowApi = new WowApi();
 
-class Ilevel {
+class Deaths {
   constructor() {
     this.json = {};
   }
@@ -14,20 +14,23 @@ class Ilevel {
     " name"};
     this.server = commands[1];
     this.character = commands[2];
-    this.json = apiRequest(wowApi.buildUrl(this.server, this.character, "items"));
+    this.json = apiRequest(wowApi.buildUrl(this.server, this.character, "statistics"));
     return this.sendMessage();
   }
 
   parseJson() {
-    return JSON.stringify(this.json.items.averageItemLevelEquipped);
+    let deathCount = this.json.statistics.subCategories.filter(function(obj) {
+      return obj.name === "Deaths";
+    })
+    return deathCount[0].statistics[0].quantity
   }
 
-  buildResponse(ilevel) {
-    return this.json.name + "'s iLevel: " + ilevel;
+  buildResponse(deathCount) {
+    return this.json.name + " has died " + deathCount + " time(s)";
   }
 
   sendMessage() {
-    if("items" in this.json) {
+    if("statistics" in this.json) {
       return this.buildResponse(this.parseJson());
     } else {
       return this.json.reason;
@@ -35,4 +38,4 @@ class Ilevel {
   }
 }
 
-export default Ilevel;
+export default Deaths;

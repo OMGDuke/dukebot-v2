@@ -5,10 +5,12 @@ const client = new Discord.Client();
 
 import Help from '../src/commands/help';
 import Ilevel from '../src/commands/ilevel';
+import Deaths from '../src/commands/deaths';
 
 let commands = {
   "!help": new Help(),
-  "!ilevel": new Ilevel()
+  "!ilevel": new Ilevel(),
+  "!deaths": new Deaths()
 }
 
 client.on('ready', () => {
