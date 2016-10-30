@@ -1,5 +1,5 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 require('dotenv').config();
+import apiRequest from '../apiRequest';
 
 class Ilevel {
   constructor() {
@@ -13,15 +13,8 @@ class Ilevel {
     " name"};
     this.server = commands[1];
     this.character = commands[2];
-    this.apiRequest(this.buildUrl());
+    this.json = apiRequest(this.buildUrl());
     return this.sendMessage();
-  }
-
-  apiRequest(url) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", url, false ); // false for synchronous request
-    xmlHttp.send( null );
-    this.json = JSON.parse(xmlHttp.responseText);
   }
 
   buildUrl() {
