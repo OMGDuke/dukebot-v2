@@ -11,7 +11,7 @@ class Deaths {
 
   send(commands) {
     if (commands.length < 3) {return "You must provide a server and character" +
-    " name"};
+    " name"}
     this.server = commands[1];
     this.character = commands[2];
     this.json = apiRequest(wowApi.buildUrl(this.server, this.character, "statistics"));
