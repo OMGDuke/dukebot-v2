@@ -6,11 +6,13 @@ const client = new Discord.Client();
 import Help from '../src/commands/help';
 import Ilevel from '../src/commands/ilevel';
 import Deaths from '../src/commands/deaths';
+import Region from '../src/commands/region';
 
 let commands = {
   "!help": new Help(),
   "!ilevel": new Ilevel(),
-  "!deaths": new Deaths()
+  "!deaths": new Deaths(),
+  "!region": new Region()
 }
 
 client.on('ready', () => {

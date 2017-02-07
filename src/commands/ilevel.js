@@ -14,6 +14,7 @@ class Ilevel {
     " name"};
     this.server = commands[1];
     this.character = commands[2];
+    this.region = region;
     this.json = apiRequest(wowApi.buildUrl(this.server, this.character, "items"));
     return this.sendMessage();
   }
