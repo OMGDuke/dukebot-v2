@@ -16,6 +16,11 @@ DISCORD_API_KEY = 'yourDiscordApiKey'
 WOW_API_KEY = 'yourWowApiKey'
 ```
 
+To run tests
+```sh
+$ npm run tests
+```
+
 ## Usage
 
 ```js

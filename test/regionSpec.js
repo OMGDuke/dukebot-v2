@@ -19,19 +19,23 @@ describe("Region", function() {
   });
 
   describe("send", function() {
-    it("take in an array and stores the name", function() {
-      region.send(commandArray);
-      expect(region.currentRegion).to.equal("us");
-    });
-
-    it("returns an error if you do not provide a region", function() {
-      let arguementsError = "You must provide a region"
-      expect(region.send(noRegion)).to.equal(arguementsError);
+    it("returns the current region if you do not provide a region", function() {
+      expect(region.send(noRegion)).to.equal("us");
     });
 
     it("returns an error if you do not provide a supported region", function() {
       let arguementsError = "Only us and eu are supported"
       expect(region.send(invalidRegion)).to.equal(arguementsError);
     });
+
+    it("take in an array and stores the name", function() {
+      region.send(commandArray);
+      expect(region.currentRegion).to.equal("us");
+    });
+
+    it("returns a message to let the user know the region has been changed", function() {
+      console.log(commandArray[1]);
+      expect(region.send(commandArray)).to.equal("Region changed to US");
+    })
   });
 });
