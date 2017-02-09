@@ -1,6 +1,6 @@
 class Region {
   constructor() {
-     this.currentRegion = 'eu';
+     this.currentRegion = "eu";
   }
 
   setRegion(newRegion) {
@@ -8,10 +8,11 @@ class Region {
   }
 
   send(commands) {
+    let newRegion = commands[1];
     if (commands.length === 1) {return this.currentRegion};
-    if (commands[1] != "us" && commands[1] != "eu") {return "Only us and eu are supported"};
-    this.currentRegion = commands[1].toLowerCase();
-    return "Region changed to " + this.currentRegion.toUpperCase();
+    if (newRegion != "us" && newRegion != "eu") {return "Only us and eu are supported"};
+    this.setRegion(newRegion.toLowerCase());
+    return "Region changed to " + newRegion.toUpperCase();
   }
 }
 

@@ -33,7 +33,7 @@ describe("wowApi", function() {
 
   describe("buildUrl", function() {
     it("builds a url from the command received", function() {
-      expect(wowApi.buildUrl("draenor", "omgduke", "items")).to.equal(testUrl);
+      expect(wowApi.buildUrl("draenor", "omgduke", "items", "eu")).to.equal(testUrl);
     });
   });
 });

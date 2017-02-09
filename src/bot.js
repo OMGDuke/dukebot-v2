@@ -22,7 +22,7 @@ client.on('ready', () => {
 client.on('message', message => {
   let command = message.content.split(" ")
   if (command[0] in commands) {
-    message.channel.sendMessage(commands[command[0]].send(command));
+    message.channel.sendMessage(commands[command[0]].send(command, commands["!region"]));
   }
 });
 

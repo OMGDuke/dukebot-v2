@@ -15,23 +15,26 @@ let json = {
   items: {
     averageItemLevelEquipped: 875
   }
-}
+};
+let regionClass = {
+  currentRegion: "us"
+};
 
 describe("Ilevel", function() {
   describe("send", function() {
     it("take in an array and stores the server name", function() {
-      ilevel.send(commandArray)
+      ilevel.send(commandArray, regionClass)
       expect(ilevel.server).to.equal("draenor");
     });
 
     it("take in an array and stores the character name", function() {
-      ilevel.send(commandArray)
+      ilevel.send(commandArray, regionClass)
       expect(ilevel.character).to.equal("omgduke");
     });
 
     it("returns an error message if arguements not provided", function() {
       let arguementsError = "You must provide a server and character name"
-      expect(ilevel.send([1])).to.equal(arguementsError);
+      expect(ilevel.send([1], regionClass)).to.equal(arguementsError);
     });
   });
 
@@ -44,7 +47,7 @@ describe("Ilevel", function() {
 
   describe("buildResponse", function() {
     it("builds a string to respond with", function() {
-      ilevel.send(commandArray);
+      ilevel.send(commandArray, regionClass);
       ilevel.json = json
       expect(ilevel.buildResponse(875)).to.equal(response);
     })
@@ -52,12 +55,12 @@ describe("Ilevel", function() {
 
   describe("sendMessage", function() {
     it("Sends a correct response if data is valid", function() {
-      ilevel.send(commandArray);
+      ilevel.send(commandArray, regionClass);
       ilevel.json = json
       expect(ilevel.sendMessage()).to.equal(response);
     });
     it("provides an error message if data is invalid", function() {
-      ilevel.send([1, "server", "character"]);
+      ilevel.send([1, "server", "character"], regionClass);
       expect(ilevel.sendMessage()).to.equal("Realm not found.");
     });
   })
