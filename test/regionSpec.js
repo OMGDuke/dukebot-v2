@@ -20,7 +20,7 @@ describe("Region", function() {
 
   describe("send", function() {
     it("returns the current region if you do not provide a region", function() {
-      expect(region.send(noRegion)).to.equal("us");
+      expect(region.send(noRegion)).to.equal("The current region is: US");
     });
 
     it("returns an error if you do not provide a supported region", function() {

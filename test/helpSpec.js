@@ -2,7 +2,7 @@ let expect = require("chai").expect;
 import Help from '../src/commands/help';
 
 const helpMessage = "__**Available Commands are:**__\n\n" +
-"**!ilevel** server characterName\n**!deaths** server characterName";
+"**!ilevel** server characterName\n**!deaths** server characterName\n**!region**";
 
 let help = new Help();
 

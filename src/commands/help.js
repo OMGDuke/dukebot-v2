@@ -1,7 +1,7 @@
 class Help {
   constructor() {
      this.message = "__**Available Commands are:**__\n\n**!ilevel** server characterName\n**!deaths** " +
-    "server characterName";
+    "server characterName\n**!region**";
   }
 
   send() {

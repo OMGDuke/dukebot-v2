@@ -21,47 +21,50 @@ let json = {
   }
 }
 let response = "Omgduke has died 100 time(s)";
+let regionClass = {
+  currentRegion: "eu"
+};
 
-describe("Deaths", function() {
-  describe("send", function() {
-    it("take in an array and stores the server name", function() {
-      deaths.send(commandArray)
+describe("Deaths", () => {
+  describe("send", () => {
+    it("take in an array and stores the server name", () => {
+      deaths.send(commandArray, regionClass)
       expect(deaths.server).to.equal("draenor");
     });
 
-    it("take in an array and stores the character name", function() {
-      deaths.send(commandArray)
+    it("take in an array and stores the character name", () => {
+      deaths.send(commandArray, regionClass)
       expect(deaths.character).to.equal("omgduke");
     });
 
-    it("returns an error message if arguements not provided", function() {
+    it("returns an error message if arguements not provided", () => {
       let arguementsError = "You must provide a server and character name"
       expect(deaths.send([1])).to.equal(arguementsError);
     });
   });
 
-  describe("parseJson", function() {
-    it("returns the death count", function() {
+  describe("parseJson", () => {
+    it("returns the death count", () => {
       deaths.json = json
       expect(deaths.parseJson()).to.equal('100');
     });
   });
 
-  describe("buildResponse", function() {
-    it("builds a string to respond with", function() {
-      deaths.send(commandArray);
+  describe("buildResponse", () => {
+    it("builds a string to respond with", () => {
+      deaths.send(commandArray, regionClass);
       expect(deaths.buildResponse(100)).to.equal(response);
     })
   })
 
-  describe("sendMessage", function() {
-    it("Sends a correct response if data is valid", function() {
-      deaths.send(commandArray);
+  describe("sendMessage", () => {
+    it("Sends a correct response if data is valid", () => {
+      deaths.send(commandArray, regionClass);
       deaths.json = json
       expect(deaths.sendMessage()).to.equal(response);
     });
-    it("provides an error message if data is invalid", function() {
-      deaths.send([1, "server", "character"]);
+    it("provides an error message if data is invalid", () => {
+      deaths.send([1, "server", "character"], regionClass);
       expect(deaths.sendMessage()).to.equal("Realm not found.");
     });
   })
