@@ -21,7 +21,7 @@ class Tsm {
       return this.itemId.error;
     } else {
       this.tsmData = this.findTsmData();
-      return this.buildResponse()
+      return (this.tsmData.error) ? this.tsmData.error : this.buildResponse();
     }
   }
 
