@@ -63,7 +63,7 @@ describe("Tsm", () => {
         "RegionAvgDailySold": 5506.2,
         "RegionSaleRate": 0.76
       }
-      expect(tsm.buildResponse()).to.contain("Starlight Rose - Draenor EU:\nMin Buyout: ")
+      expect(tsm.buildResponse()).to.contain("**Starlight Rose** - Draenor EU:\n\n*Min Buyout:* ")
     })
   })
 

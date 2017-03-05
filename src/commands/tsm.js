@@ -17,8 +17,12 @@ class Tsm {
     this.itemName = commands.slice(2).join(" ");
     this.region = region.currentRegion;
     this.itemId = this.findItemId();
-    this.tsmData = this.findTsmData();
-    return this.buildResponse()
+    if(this.itemId.error) {
+      return this.itemId.error;
+    } else {
+      this.tsmData = this.findTsmData();
+      return this.buildResponse()
+    }
   }
 
   findItemId() {

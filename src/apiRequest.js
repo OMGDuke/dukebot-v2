@@ -10,7 +10,11 @@ function apiRequest(url) {
     return JSON.parse(xmlHttp.responseText);
   } catch(error) {
     parseString(xmlHttp.responseText, function (err, result) {
-        itemId = result.wowhead.item[0].$.id;
+      if (result.wowhead.error) {
+        itemId = result.wowhead
+      } else {
+        itemId = result.wowhead.item[0].$.id;  
+      }
     });
     return itemId
   }
