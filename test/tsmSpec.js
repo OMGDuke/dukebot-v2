@@ -7,6 +7,27 @@ let commandArray = ["!tsm", "draenor", "starlight", "rose"];
 let regionClass = {
   currentRegion: "eu"
 };
+tsm.itemData = {
+  "Id": 124105,
+  "Name": "Starlight Rose",
+  "Level": 101,
+  "Class": "Trade Goods",
+  "SubClass": "Herb",
+  "VendorBuy": 0,
+  "VendorSell": 1750,
+  "MarketValue": 793492,
+  "MinBuyout": 687999,
+  "Quantity": 35854,
+  "NumAuctions": 753,
+  "HistoricalPrice": 912986,
+  "RegionMarketAvg": 918285,
+  "RegionMinBuyoutAvg": 828728,
+  "RegionQuantity": 9817,
+  "RegionHistoricalPrice": 994625,
+  "RegionSaleAvg": 652873,
+  "RegionAvgDailySold": 5506.2,
+  "RegionSaleRate": 0.76
+}
 
 describe("Tsm", () => {
   describe("send", () => {
@@ -42,27 +63,6 @@ describe("Tsm", () => {
 
   describe("buildResponse", () => {
     it("returns a string response", () => {
-      tsm.itemData = {
-        "Id": 124105,
-        "Name": "Starlight Rose",
-        "Level": 101,
-        "Class": "Trade Goods",
-        "SubClass": "Herb",
-        "VendorBuy": 0,
-        "VendorSell": 1750,
-        "MarketValue": 793492,
-        "MinBuyout": 687999,
-        "Quantity": 35854,
-        "NumAuctions": 753,
-        "HistoricalPrice": 912986,
-        "RegionMarketAvg": 918285,
-        "RegionMinBuyoutAvg": 828728,
-        "RegionQuantity": 9817,
-        "RegionHistoricalPrice": 994625,
-        "RegionSaleAvg": 652873,
-        "RegionAvgDailySold": 5506.2,
-        "RegionSaleRate": 0.76
-      }
       expect(tsm.buildResponse()).to.contain("**Starlight Rose** - Draenor EU:\n\n*Min Buyout:* ")
     })
   })
@@ -72,4 +72,13 @@ describe("Tsm", () => {
       expect(tsm.returnGoldBreakdown(687999)).to.equal("68g 79s 99c");
     })
   })
+
+  describe("generateUndermineLink", () => {
+    it("generates a link to the undermine journal", () => {
+      tsm.region = "eu";
+      tsm.server = "draenor";
+      tsm.itemId = "124105";
+      expect(tsm.generateUndermineLink()).to.equal("*Undermine Journal:* https://theunderminejournal.com/#eu/draenor/item/124105");
+    });
+  });
 });

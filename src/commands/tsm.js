@@ -38,8 +38,9 @@ class Tsm {
     let line2 = "*Min Buyout:* " + this.returnGoldBreakdown(this.tsmData.MinBuyout) + ":\n";
     let line3 = "*Market Value:* " + this.returnGoldBreakdown(this.tsmData.MarketValue) + ":\n";
     let line4 = "*Historical Price:* " + this.returnGoldBreakdown(this.tsmData.HistoricalPrice) + ":\n";
-    let line5 = "*Current Quantity:* " + this.tsmData.Quantity;
-    return line1 + line2 + line3 + line4 + line5;
+    let line5 = "*Current Quantity:* " + this.tsmData.Quantity + "\n\n";
+    let line6 = this.generateUndermineLink()
+    return line1 + line2 + line3 + line4 + line5 + line6;
   }
 
   returnGoldBreakdown(amount) {
@@ -47,6 +48,10 @@ class Tsm {
     let silver = amount.toString().split("").slice(-4, -2).join("")
     let gold = amount.toString().split("").slice(0, -4).join("")
     return gold + "g " + silver + "s " + copper + "c";
+  }
+
+  generateUndermineLink() {
+    return "*Undermine Journal:* https://theunderminejournal.com/#"+ this.region + "/" + this.server + "/item/" + this.itemId
   }
 }
 
