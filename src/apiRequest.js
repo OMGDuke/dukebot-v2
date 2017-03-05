@@ -1,10 +1,19 @@
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+import {XMLHttpRequest} from "xmlhttprequest";
+var parseString = require('xml2js').parseString;
 
 function apiRequest(url) {
-  var xmlHttp = new XMLHttpRequest();
+  let itemId;
+  let xmlHttp = new XMLHttpRequest();
   xmlHttp.open( "GET", url, false ); // false for synchronous request
   xmlHttp.send( null );
-  return JSON.parse(xmlHttp.responseText);
+  try {
+    return JSON.parse(xmlHttp.responseText);
+  } catch(error) {
+    parseString(xmlHttp.responseText, function (err, result) {
+        itemId = result.wowhead.item[0].$.id;
+    });
+    return itemId
+  }
 }
 
 export default apiRequest;

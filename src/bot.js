@@ -9,13 +9,15 @@ import Ilevel from '../src/commands/ilevel';
 import Deaths from '../src/commands/deaths';
 import Region from '../src/commands/region';
 import Affixes from '../src/commands/affixes';
+import Tsm from '../src/commands/tsm';
 
 let commands = {
   "!help": new Help(),
   "!ilevel": new Ilevel(),
   "!deaths": new Deaths(),
   "!region": new Region(),
-  "!affixes": new Affixes()
+  "!affixes": new Affixes(),
+  "!tsm": new Tsm()
 }
 
 client.on('ready', () => {
