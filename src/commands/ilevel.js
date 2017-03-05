@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config()
 import apiRequest from '../apiRequest';
 import WowApi from '../wowApi';
 
@@ -14,7 +15,7 @@ class Ilevel {
     " name"};
     this.server = commands[1];
     this.character = commands[2];
-    this.json = apiRequest(wowApi.buildUrl(this.server, this.character, "items", region.currentRegion));
+    this.json = apiRequest(wowApi.buildCharacterUrl(this.server, this.character, "items", region.currentRegion));
     return this.sendMessage();
   }
 

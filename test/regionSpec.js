@@ -1,4 +1,4 @@
-let expect = require("chai").expect;
+import { expect } from 'chai';
 import Region from '../src/commands/region';
 
 let region = new Region();

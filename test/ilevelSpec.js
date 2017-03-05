@@ -1,5 +1,6 @@
-require('dotenv').config();
-let expect = require("chai").expect;
+import dotenv from 'dotenv'
+dotenv.config()
+import { expect } from 'chai';
 
 import Ilevel from '../src/commands/ilevel';
 

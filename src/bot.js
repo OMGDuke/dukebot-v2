@@ -1,4 +1,5 @@
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config()
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -7,12 +8,14 @@ import Help from '../src/commands/help';
 import Ilevel from '../src/commands/ilevel';
 import Deaths from '../src/commands/deaths';
 import Region from '../src/commands/region';
+import Affixes from '../src/commands/affixes';
 
 let commands = {
   "!help": new Help(),
   "!ilevel": new Ilevel(),
   "!deaths": new Deaths(),
-  "!region": new Region()
+  "!region": new Region(),
+  "!affixes": new Affixes()
 }
 
 client.on('ready', () => {

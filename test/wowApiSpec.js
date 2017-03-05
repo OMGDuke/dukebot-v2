@@ -1,14 +1,17 @@
-require('dotenv').config();
-let expect = require("chai").expect;
+import dotenv from 'dotenv'
+dotenv.config()
+import { expect } from 'chai';
 
 import WowApi from '../src/wowApi';
 
 let wowApi = new WowApi();
 let url0 = "https://";
-let url1 = ".api.battle.net/wow/character/";
+let url1 = ".api.battle.net/wow/";
 let url2 = "?fields=";
 let url3 = "&locale=en_GB&apikey=";
-let testUrl = url0 + "eu" + url1 + "draenor/omgduke" + url2 + "items" + url3 +
+let charUrl = url0 + "eu" + url1 + "character/" + "draenor/omgduke" + url2 + "items" + url3 +
+process.env.WOW_API_KEY;
+let guildUrl = url0 + "eu" + url1 + "guild/" + "draenor/over%20raided" + url2 + "news" + url3 +
 process.env.WOW_API_KEY;
 
 
@@ -18,7 +21,7 @@ describe("wowApi", function() {
       expect(wowApi.url0).to.equal(url0);
     });
 
-    it("initializes with url1", function() {
+    it("initializes with url1a", function() {
       expect(wowApi.url1).to.equal(url1);
     });
 
@@ -31,9 +34,15 @@ describe("wowApi", function() {
     });
   });
 
-  describe("buildUrl", function() {
+  describe("buildCharacterUrl", function() {
     it("builds a url from the command received", function() {
-      expect(wowApi.buildUrl("draenor", "omgduke", "items", "eu")).to.equal(testUrl);
+      expect(wowApi.buildCharacterUrl("draenor", "omgduke", "items", "eu")).to.equal(charUrl);
+    });
+  });
+
+  describe("buildGuildUrl", function() {
+    it("builds a url from the env vars", function() {
+      expect(wowApi.buildGuildUrl("news")).to.equal(guildUrl);
     });
   });
 });

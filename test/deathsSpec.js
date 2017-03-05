@@ -1,14 +1,9 @@
-require('dotenv').config();
-let expect = require("chai").expect;
+import { expect } from 'chai';
 
 import Deaths from '../src/commands/deaths';
 
 let deaths = new Deaths();
 let commandArray = ["!ilevel", "draenor", "omgduke"];
-let url = "https://eu.api.battle.net/wow/character/";
-let urlOptions = "?fields=statistics&locale=en_GB&apikey=";
-let testUrl = url + commandArray[1] + "/" + commandArray[2] + urlOptions +
-process.env.WOW_API_KEY;
 let json = {
   name: "Omgduke",
   statistics: {
