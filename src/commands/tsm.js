@@ -16,18 +16,33 @@ class Tsm {
     this.server = commands[1];
     this.itemName = commands.slice(2).join(" ");
     this.region = region.currentRegion;
-    this.findItemId();
-    this.findTsmData();
-    return this.tsmData.name
+    this.itemId = this.findItemId();
+    this.tsmData = this.findTsmData();
+    return this.buildResponse()
   }
 
   findItemId() {
-    this.itemId = apiRequest(wowHeadApi.buildItemUrl(this.itemName))
+    return apiRequest(wowHeadApi.buildItemUrl(this.itemName))
   }
 
   findTsmData() {
-    this.tsmData = apiRequest(tsmApi.buildTsmUrl(this.server, this.itemId, this.region))
-    console.log(JSON.stringify(this.tsmData));
+    return apiRequest(tsmApi.buildTsmUrl(this.server, this.itemId, this.region))
+  }
+
+  buildResponse() {
+    let line1 = "**" + this.tsmData.Name + "** - " + this.server.charAt(0).toUpperCase() + this.server.slice(1).toLowerCase() + " " + this.region.toUpperCase() + ":\n\n";
+    let line2 = "*Min Buyout:* " + this.returnGoldBreakdown(this.tsmData.MinBuyout) + ":\n";
+    let line3 = "*Market Value:* " + this.returnGoldBreakdown(this.tsmData.MarketValue) + ":\n";
+    let line4 = "*Historical Price:* " + this.returnGoldBreakdown(this.tsmData.HistoricalPrice) + ":\n";
+    let line5 = "*Current Quantity:* " + this.tsmData.Quantity;
+    return line1 + line2 + line3 + line4 + line5;
+  }
+
+  returnGoldBreakdown(amount) {
+    let copper = amount.toString().split("").slice(-2).join("")
+    let silver = amount.toString().split("").slice(-4, -2).join("")
+    let gold = amount.toString().split("").slice(0, -4).join("")
+    return gold + "g " + silver + "s " + copper + "c";
   }
 }
 
