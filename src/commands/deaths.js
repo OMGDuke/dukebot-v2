@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
 import apiRequest from '../apiRequest';
 import WowApi from '../wowApi';
 

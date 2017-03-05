@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 class WowApi {
   constructor() {
     this.url0 = "https://"
