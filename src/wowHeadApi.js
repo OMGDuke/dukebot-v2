@@ -1,3 +1,5 @@
+
+
 class WowHeadApi {
   constructor() {
     this.url0 = "http://www.wowhead.com/item=";

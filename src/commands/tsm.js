@@ -1,5 +1,5 @@
 import apiRequest from '../apiRequest';
-import WowHeadApi from '../WowHeadApi';
+import WowHeadApi from '../wowHeadApi';
 import TsmApi from '../tsmApi'
 
 let wowHeadApi = new WowHeadApi();
