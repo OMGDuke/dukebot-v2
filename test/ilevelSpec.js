@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config()
+dotenv.config();
 import { expect } from 'chai';
 
 import Ilevel from '../src/commands/ilevel';
@@ -24,24 +24,24 @@ let regionClass = {
 describe("Ilevel", function() {
   describe("send", function() {
     it("take in an array and stores the server name", function() {
-      ilevel.send(commandArray, regionClass)
+      ilevel.send(commandArray, regionClass);
       expect(ilevel.server).to.equal("draenor");
     });
 
     it("take in an array and stores the character name", function() {
-      ilevel.send(commandArray, regionClass)
+      ilevel.send(commandArray, regionClass);
       expect(ilevel.character).to.equal("omgduke");
     });
 
     it("returns an error message if arguements not provided", function() {
-      let arguementsError = "You must provide a server and character name"
+      let arguementsError = "You must provide a server and character name";
       expect(ilevel.send([1], regionClass)).to.equal(arguementsError);
     });
   });
 
   describe("parseJson", function() {
     it("returns the ilevel", function() {
-      ilevel.json = json
+      ilevel._json = json;
       expect(ilevel.parseJson()).to.equal('875');
     });
   });
@@ -49,15 +49,15 @@ describe("Ilevel", function() {
   describe("buildResponse", function() {
     it("builds a string to respond with", function() {
       ilevel.send(commandArray, regionClass);
-      ilevel.json = json
+      ilevel._json = json;
       expect(ilevel.buildResponse(875)).to.equal(response);
     })
-  })
+  });
 
   describe("sendMessage", function() {
     it("Sends a correct response if data is valid", function() {
       ilevel.send(commandArray, regionClass);
-      ilevel.json = json
+      ilevel._json = json;
       expect(ilevel.sendMessage()).to.equal(response);
     });
     it("provides an error message if data is invalid", function() {

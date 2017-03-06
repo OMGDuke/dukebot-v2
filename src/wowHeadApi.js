@@ -2,12 +2,12 @@
 
 class WowHeadApi {
   constructor() {
-    this.url0 = "http://www.wowhead.com/item=";
-    this.url1 = "&xml";
+    this._url0 = "http://www.wowhead.com/item=";
+    this._url1 = "&xml";
   }
 
   buildItemUrl(item) {
-    return this.url0 + encodeURI(item) + this.url1;
+    return this._url0 + encodeURI(item) + this._url1;
   }
 }
 

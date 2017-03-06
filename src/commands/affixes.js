@@ -9,28 +9,28 @@ class Affixes {
       week6: "Bolstering, Skittish, Fortified",
       week7: "Sanguine, Overflowing, Tyrannical",
       week8: "Teeming, Skittish, Fortified"
-    }
-    this.region = "eu";
+    };
+    this._region = "eu";
   }
 
   send(commands, region) {
-    this.region = region;
-    return "**This weeks affixes (" + region.currentRegion.toUpperCase() + "):** " + this.findCurrentSet()
+    this._region = region;
+    return "**This weeks affixes (" + region.currentRegion.toUpperCase() + "):** " + this.findCurrentSet();
   }
 
   findCurrentSet() {
-    let week = "week" + this.getCurrentWeek()
+    let week = "week" + this.getCurrentWeek();
     return this.affixCollection[week]
   }
 
   getCurrentWeek() {
-    let weeks = this.calculateWeeks()
-    return (this.region.currentRegion === "eu") ? weeks : weeks - 2;
+    let weeks = Affixes.calculateWeeks();
+    return (this._region.currentRegion === "eu") ? weeks : weeks - 2;
   }
 
-  calculateWeeks() {
+  static calculateWeeks() {
     let start  = new Date("2017-01-18");
-    var today = new Date();
+    let today = new Date();
     let weeks =  Math.round((today-start)/ 604800000);
     return (weeks > 8) ? Math.floor((weeks / 8)) : weeks;
   }

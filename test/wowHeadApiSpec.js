@@ -10,11 +10,11 @@ let itemUrl = url0 + "starlight%20rose" + url1;
 describe("wowHeadApi", () => {
   describe("Initialize", () => {
     it("initializes with url0", () => {
-      expect(wowHeadApi.url0).to.equal(url0);
+      expect(wowHeadApi._url0).to.equal(url0);
     });
 
     it("initializes with url1", () => {
-      expect(wowHeadApi.url1).to.equal(url1);
+      expect(wowHeadApi._url1).to.equal(url1);
     });
   });
 

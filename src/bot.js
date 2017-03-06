@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config()
+dotenv.config();
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -18,14 +18,14 @@ let commands = {
   "!region": new Region(),
   "!affixes": new Affixes(),
   "!tsm": new Tsm()
-}
+};
 
 client.on('ready', () => {
   console.log('Dukebot online');
 });
 
 client.on('message', message => {
-  let command = message.content.split(" ")
+  let command = message.content.split(" ");
   if (command[0] in commands) {
     message.channel.sendMessage(commands[command[0]].send(command, commands["!region"]));
   }

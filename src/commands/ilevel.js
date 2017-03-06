@@ -5,31 +5,31 @@ let wowApi = new WowApi();
 
 class Ilevel {
   constructor() {
-    this.json = {};
+    this._json = {};
   }
 
   send(commands, region) {
     if (commands.length < 3) {return "You must provide a server and character" +
-    " name"};
+    " name"}
     this.server = commands[1];
     this.character = commands[2];
-    this.json = apiRequest(wowApi.buildCharacterUrl(this.server, this.character, "items", region.currentRegion));
+    this._json = apiRequest(wowApi.buildCharacterUrl(this.server, this.character, "items", region.currentRegion));
     return this.sendMessage();
   }
 
   parseJson() {
-    return JSON.stringify(this.json.items.averageItemLevelEquipped);
+    return JSON.stringify(this._json.items.averageItemLevelEquipped);
   }
 
   buildResponse(ilevel) {
-    return this.json.name + "'s iLevel: " + ilevel;
+    return this._json.name + "'s iLevel: " + ilevel;
   }
 
   sendMessage() {
-    if("items" in this.json) {
+    if("items" in this._json) {
       return this.buildResponse(this.parseJson());
     } else {
-      return this.json.reason;
+      return this._json.reason;
     }
   }
 }

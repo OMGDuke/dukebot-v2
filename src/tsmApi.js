@@ -1,14 +1,14 @@
 import dotenv from 'dotenv'
-dotenv.config()
+dotenv.config();
 
 class TsmApi {
   constructor() {
-    this.url0 = "http://api.tradeskillmaster.com/v1/item/";
-    this.url1 = "?format=json&apiKey=";
+    this._url0 = "http://api.tradeskillmaster.com/v1/item/";
+    this._url1 = "?format=json&apiKey=";
   }
 
   buildTsmUrl(server, itemId, region) {
-    return this.url0 + region + "/" + server + "/" + itemId + this.url1 + process.env.TSM_API_KEY;
+    return this._url0 + region + "/" + server + "/" + itemId + this._url1 + process.env.TSM_API_KEY;
   }
 }
 

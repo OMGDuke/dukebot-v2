@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config()
+dotenv.config();
 import { expect } from 'chai';
 
 import WowApi from '../src/wowApi';
@@ -18,19 +18,19 @@ process.env.WOW_API_KEY;
 describe("wowApi", function() {
   describe("Initialize", function() {
     it("initializes with url0", function() {
-      expect(wowApi.url0).to.equal(url0);
+      expect(wowApi._url0).to.equal(url0);
     });
 
     it("initializes with url1a", function() {
-      expect(wowApi.url1).to.equal(url1);
+      expect(wowApi._url1).to.equal(url1);
     });
 
     it("initializes with url2", function() {
-      expect(wowApi.url2).to.equal(url2);
+      expect(wowApi._url2).to.equal(url2);
     });
 
     it("initializes with url3", function() {
-      expect(wowApi.url3).to.equal(url3);
+      expect(wowApi._url3).to.equal(url3);
     });
   });
 

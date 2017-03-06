@@ -1,5 +1,5 @@
 import {XMLHttpRequest} from "xmlhttprequest";
-var parseString = require('xml2js').parseString;
+let parseString = require('xml2js').parseString;
 
 function apiRequest(url) {
   let itemId;
@@ -16,7 +16,7 @@ function apiRequest(url) {
         itemId = result.wowhead.item[0].$.id;  
       }
     });
-    return itemId
+    return itemId;
   }
 }
 

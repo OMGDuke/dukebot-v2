@@ -27,23 +27,23 @@ tsm.itemData = {
   "RegionSaleAvg": 652873,
   "RegionAvgDailySold": 5506.2,
   "RegionSaleRate": 0.76
-}
+};
 
 describe("Tsm", () => {
   describe("send", () => {
     it("take in an array and stores the item name", () => {
-      tsm.send(commandArray, regionClass)
+      tsm.send(commandArray, regionClass);
       expect(tsm.itemName).to.equal("starlight rose");
     });
 
     it("take in an array and stores the server name", () => {
-      tsm.send(commandArray, regionClass)
+      tsm.send(commandArray, regionClass);
       expect(tsm.server).to.equal("draenor");
     });
 
     it("take in an array and stores the current region", () => {
-      tsm.send(commandArray, regionClass)
-      expect(tsm.region).to.equal("eu");
+      tsm.send(commandArray, regionClass);
+      expect(tsm._region).to.equal("eu");
     });
   });
 
@@ -52,26 +52,26 @@ describe("Tsm", () => {
 
       expect(tsm.findItemId()).to.equal("124105")
     })
-  })
+  });
 
   describe("findTsmData", () => {
     it("makes a request to find out the TSM data", () => {
-      tsm.itemId = "124105"
+      tsm.itemId = "124105";
       expect(tsm.findTsmData().Name).to.equal("Starlight Rose")
     })
-  })
+  });
 
   describe("buildResponse", () => {
     it("returns a string response", () => {
       expect(tsm.buildResponse()).to.contain("**Starlight Rose** - Draenor EU:\n\n*Min Buyout:* ")
     })
-  })
+  });
 
   describe("returnGoldBreakdown", () => {
     it("returns the value in g s and c", () => {
-      expect(tsm.returnGoldBreakdown(687999)).to.equal("68g 79s 99c");
+      expect(Tsm.returnGoldBreakdown(687999)).to.equal("68g 79s 99c");
     })
-  })
+  });
 
   describe("generateUndermineLink", () => {
     it("generates a link to the undermine journal", () => {
