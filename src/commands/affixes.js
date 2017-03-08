@@ -29,7 +29,7 @@ class Affixes {
   }
 
   static calculateWeeks() {
-    let start  = new Date("2017-01-18");
+    let start  = new Date("2017-1-15");
     let today = new Date();
     let weeks =  Math.round((today-start)/ 604800000);
     return (weeks > 8) ? Math.floor((weeks / 8)) : weeks;
