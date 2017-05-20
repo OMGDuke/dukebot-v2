@@ -12,7 +12,7 @@ before: () => {
 describe("Affixes", () => {
   describe("affixCollection", () => {
     it("stores a collection of affix sets", () => {
-      expect(affixes.affixCollection.week1).to.equal("Raging, Necrotic, Fortified");
+      expect(affixes.affixCollection.week1).to.equal("Raging, Volcanic, Tyrannical");
     });
   });
 
@@ -22,9 +22,9 @@ describe("Affixes", () => {
     });
   });
 
-  describe("getCurrentWeek", () => {
+  describe("calculateWeeks", () => {
     it("returns the current week as a number", () => {
-      expect(affixes.getCurrentWeek()).to.be.a('number')
+      expect(affixes.calculateWeeks()).to.be.a('number')
     });
   });
 });

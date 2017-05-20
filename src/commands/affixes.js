@@ -1,14 +1,14 @@
 class Affixes {
   constructor() {
     this.affixCollection = {
-      week1: "Raging, Necrotic, Fortified",
-      week2: "Bolstering, Overflowing, Tyrannical",
-      week3: "Sanguine, Volcanic, Fortified",
-      week4: "Teeming, Necrotic, Tyrannical",
-      week5: "Raging, Volcanic, Tyrannical",
-      week6: "Bolstering, Skittish, Fortified",
-      week7: "Sanguine, Overflowing, Tyrannical",
-      week8: "Teeming, Skittish, Fortified"
+      week1: 'Raging, Volcanic, Tyrannical',
+      week2: 'Teeming, Explosive, Fortified',
+      week3: 'Bolstering, Grievous, Tyrannical',
+      week4: 'Sanguine, Volcanic, Fortified',
+      week5: 'Bursting, Skittish, Tyrannical',
+      week6: 'Teeming, Quaking, Fortified',
+      week7: 'Raging, Necrotic, Tyrannical',
+      week8: 'Bolstering, Skittish, Fortified'
     };
     this._region = "eu";
   }
@@ -19,20 +19,19 @@ class Affixes {
   }
 
   findCurrentSet() {
-    let week = "week" + this.getCurrentWeek();
+    let week = "week" + this.calculateWeeks();
     return this.affixCollection[week]
   }
 
-  getCurrentWeek() {
-    let weeks = Affixes.calculateWeeks();
-    return (this._region.currentRegion === "eu") ? weeks : weeks - 2;
-  }
-
-  static calculateWeeks() {
-    let start  = new Date("2017-1-15");
+  calculateWeeks() {
+    const oneDay = 24*60*60*1000;
+    let usDate = new Date(Date.UTC(2017, 2, 28, 15, 0, 0));
+    let euDate = new Date(Date.UTC(2017, 2, 29, 7, 0, 0));
+    let start  = this._region.currentRegion ==="eu" ? euDate : usDate;
     let today = new Date();
-    let weeks =  Math.round((today-start)/ 604800000);
-    return (weeks > 8) ? Math.floor((weeks / 8)) : weeks;
+    let daysBetween = Math.round(Math.abs((start.getTime() - today.getTime())/(oneDay)));
+    let weeks =  Math.floor(daysBetween/7);
+    return (weeks%8) + 1;
   }
 }
 
