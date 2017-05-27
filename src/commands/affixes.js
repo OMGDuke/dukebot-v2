@@ -8,7 +8,8 @@ class Affixes {
       week5: 'Bursting, Skittish, Tyrannical',
       week6: 'Teeming, Quaking, Fortified',
       week7: 'Raging, Necrotic, Tyrannical',
-      week8: 'Bolstering, Skittish, Fortified'
+      week8: 'Bolstering, Skittish, Fortified',
+      week9: 'Teeming, Necrotic, Tyrannical'
     };
     this._region = "eu";
   }
@@ -31,7 +32,7 @@ class Affixes {
     let today = new Date();
     let daysBetween = Math.round(Math.abs((start.getTime() - today.getTime())/(oneDay)));
     let weeks =  Math.floor(daysBetween/7);
-    return (weeks%8) + 1;
+    return (weeks%9) + 1;
   }
 }
 
